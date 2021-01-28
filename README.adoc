@@ -20,10 +20,9 @@
 $ git clone https://github.com/paulojeronimo/{doctitle} && cd `basename $_`
 ----
 
-*Build with {make} (just for fun as the next commit will use
-{docker-compose}):*
+*Build with {docker-compose}*:
 
-	$ make
+	$ docker-compose build
 
 *Run:*
 
