@@ -1,0 +1,54 @@
+dn: cn=paulojeronimo,dc=finisher,dc=tech
+changetype: add
+objectclass: inetOrgPerson
+cn: paulojeronimo
+givenname: Paulo
+sn: Jeronimo
+displayname: Paulo Jeronimo
+mail: paulojeronimo@gmail.com
+userpassword: paulojeronimo!
+
+dn: cn=tadeuvsantos,dc=finisher,dc=tech
+changetype: add
+objectclass: inetOrgPerson
+cn: tadeuvsantos
+givenname: Tadeu
+sn: Viana
+displayname: Tadeu Viana
+mail: tadeuvsantos@gmail.com
+userpassword: tadeuvsantos!
+
+dn: ou=Groups,dc=finisher,dc=tech
+changetype: add
+objectclass: organizationalUnit
+ou: Groups
+
+dn: ou=Users,dc=finisher,dc=tech
+changetype: add
+objectclass: organizationalUnit
+ou: Users
+
+dn: cn=Admins,ou=Groups,dc=finisher,dc=tech
+changetype: add
+cn: Admins
+objectclass: groupOfUniqueNames
+uniqueMember: cn=admin,dc=finisher,dc=tech
+
+dn: cn=Athletes,ou=Groups,dc=finisher,dc=tech
+changetype: add
+cn: Athletes
+objectclass: groupOfUniqueNames
+uniqueMember: cn=paulojeronimo,dc=finisher,dc=tech
+uniqueMember: cn=tadeuvsantos,dc=finisher,dc=tech
+
+dn: cn=Trainers,ou=Groups,dc=finisher,dc=tech
+changetype: add
+cn: Trainers
+objectclass: groupOfUniqueNames
+uniqueMember: cn=tadeuvsantos,dc=finisher,dc=tech
+
+dn: cn=Developers,ou=Groups,dc=finisher,dc=tech
+changetype: add
+cn: Developers
+objectclass: groupOfUniqueNames
+uniqueMember: cn=paulojeronimo,dc=finisher,dc=tech
