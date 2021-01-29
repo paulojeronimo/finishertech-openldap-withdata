@@ -1,4 +1,4 @@
-FROM osixia/openldap
+FROM finishertech/openldap-with-kerberos:1.5.0
 
 LABEL maintainer="paulojeronimo@gmail.com"
 

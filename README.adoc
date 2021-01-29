@@ -3,6 +3,7 @@
 :nofooter:
 
 // URIs
+:uri-pj-gh: https://github.com/paulojeronimo
 :uri-make: https://www.gnu.org/software/make/
 :uri-docker-compose: https://docs.docker.com/compose/
 :uri-phpldapadmin: http://phpldapadmin.sourceforge.net
@@ -17,16 +18,28 @@
 
 [subs="attributes+"]
 ----
-$ git clone https://github.com/paulojeronimo/{doctitle} && cd `basename $_`
+$ mkdir -p ~/labs/openldap-kerberos && cd $_
+$ git clone {uri-pj-gh}/docker-openldap-with-kerberos
+$ git clone {uri-pj-gh}/docker-kerberos-with-ldap
+$ git clone {uri-pj-gh}/{doctitle}
 ----
 
-*Build with {docker-compose}*:
+*Build*:
 
-	$ docker-compose build
+[subs="attributes+"]
+----
+$ (cd docker-openldap-with-kerberos && make)
+$ (cd docker-kerberos-with-ldap && make)
+$ cd finishertech-openldap-withdata; docker-compose build
+----
 
 *Run:*
 
+	$ export LDAP_ADMIN_PASSWORD='You are an Ironman!'
 	$ docker-compose up -d
+
+NOTE: Are you curious about the phrase {uri-you-are-an-ironman}["You are
+an Ironman!"^]?
 
 *Test:*
 
@@ -45,15 +58,5 @@ uniqueMember: cn=admin,dc=finisher,dc=tech
 ----
 ====
 
-Use the phrase {uri-you-are-an-ironman}["You are an Ironman!"^] (without
-quotation marks) for the password.
-
-[NOTE]
-====
-This password comes from the `docker-compose.yml` file:
-
-----
-$ grep -i password docker-compose.yml
-      LDAP_ADMIN_PASSWORD: 'You are an Ironman!'
-----
-====
+Use the value confiugured to the variable `LDAP_ADMIN_PASSWORD` for the
+password.
