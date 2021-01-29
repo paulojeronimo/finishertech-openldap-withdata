@@ -447,15 +447,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ git clone https://github.com/paulojeronimo/finishertech-openldap-withdata &amp;&amp; cd `basename $_`</pre>
+<pre>$ mkdir -p ~/labs/openldap-kerberos &amp;&amp; cd $_
+$ git clone https://github.com/paulojeronimo/docker-openldap-with-kerberos
+$ git clone https://github.com/paulojeronimo/docker-kerberos-with-ldap
+$ git clone https://github.com/paulojeronimo/finishertech-openldap-withdata</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Build with <a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">docker-compose</a></strong>:</p>
+<p><strong>Build</strong>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ docker-compose build</pre>
+<pre>$ (cd docker-openldap-with-kerberos &amp;&amp; make)
+$ (cd docker-kerberos-with-ldap &amp;&amp; make)
+$ cd finishertech-openldap-withdata; docker-compose build</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -463,8 +468,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ docker-compose up -d</pre>
+<pre>$ export LDAP_ADMIN_PASSWORD='You are an Ironman!'
+$ docker-compose up -d</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Are you curious about the phrase <a href="https://www.youtube.com/watch?v=gAtlpJW-Dio" target="_blank" rel="noopener">"You are
+an Ironman!"</a>?
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><strong>Test:</strong></p>
@@ -497,28 +516,8 @@ uniqueMember: cn=admin,dc=finisher,dc=tech</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Use the phrase <a href="https://www.youtube.com/watch?v=gAtlpJW-Dio" target="_blank" rel="noopener">"You are an Ironman!"</a> (without
-quotation marks) for the password.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This password comes from the <code>docker-compose.yml</code> file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ grep -i password docker-compose.yml
-      LDAP_ADMIN_PASSWORD: 'You are an Ironman!'</pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
+<p>Use the value confiugured to the variable <code>LDAP_ADMIN_PASSWORD</code> for the
+password.</p>
 </div>
 </div>
 </body>
